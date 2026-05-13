@@ -1,4 +1,4 @@
-import { Briefcase, Users, Award, Star } from "lucide-react";
+﻿import { Briefcase, Users, Award, Star } from "lucide-react";
 
 export default function Stats() {
     return (
@@ -19,8 +19,8 @@ function StatCard({ icon, value, label }: { icon: React.ReactNode; value: string
             <div className="w-10 h-10 rounded-xl bg-[#FF6B00] flex items-center justify-center text-white mb-5 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(255,107,0,0.3)]">
                 {icon}
             </div>
-            <h3 className="text-3xl font-black mb-1 text-white">{value}</h3>
-            <p className="text-white/40 text-xs font-medium uppercase tracking-wider">{label}</p>
+            <h3 className="text-3xl font-semibold mb-1 text-white">{value}</h3>
+            <p className="text-white/80 text-xs font-medium uppercase tracking-wider">{label}</p>
         </div>
     );
 }

@@ -14,19 +14,20 @@
 
 :root {
   --background: #0A0A0A;
-  --foreground: #F8FAFC; 
-  --primary: #FF6B00; /* Vibrant Orange */
-  --secondary: #94A3B8; 
+  --foreground: #F8FAFC;
+  --primary: #FF6B00;
+  /* Vibrant Orange */
+  --secondary: #94A3B8;
   --accent: #FF6B00;
-  --muted: #1A1A1A; /* Deeper gray for cards */
+  --muted: #1A1A1A;
+  /* Deeper gray for cards */
   --border: rgba(255, 255, 255, 0.1);
 }
 
 /* Base styles */
 body {
-  background-color: var(--background);
-  background-image: radial-gradient(circle at 0% 0%, rgba(34, 35, 74, 0.4) 0%, transparent 40%),
-                    radial-gradient(circle at 100% 100%, rgba(34, 35, 74, 0.2) 0%, transparent 40%);
+  background-color: #181930;
+  background-image: linear-gradient(to bottom, #181930 0%, #0A0A0A 100%);
   background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-sans);
@@ -38,11 +39,70 @@ body {
 }
 
 @layer base {
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-bold tracking-tight;
   }
 }
 
 .container {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Custom Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
 }
