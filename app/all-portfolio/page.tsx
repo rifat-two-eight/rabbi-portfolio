@@ -19,20 +19,6 @@ const projects = [
         link: "https://www.figma.com/design/zlivS9TYyyc1lDhYsgok5Q/Photopia?node-id=72-9140&t=iseYucSSR5gMlFO8-0"
     },
     {
-        title: "Grocery",
-        description: "Grocery Shopping & Delivery App",
-        image: "/grocery.png",
-        alt: "Grocery App",
-        link: "https://www.behance.net/gallery/233433769/Grocery-Mobile-App"
-    },
-    {
-        title: "Prottoyon",
-        description: "AI-powered recruitment SaaS platform that streamlines hiring for startups and enterprises.",
-        image: "/prottoyon.png",
-        alt: "Prottoy App",
-        link: "https://www.behance.net/gallery/226418669/Prottoyon-App-Redesigning-Case-Study"
-    },
-    {
         title: "Sporve",
         description: "A trading platform for car enthusiasts to trade in high-value collectibles.",
         image: "/sporve.png",
@@ -47,11 +33,26 @@ const projects = [
         link: "https://www.behance.net/gallery/249258651/Ascela-Personalized-Womens-Wellness-Nutrition-App"
     },
     {
+        title: "Prottoyon",
+        description: "AI-powered recruitment SaaS platform that streamlines hiring for startups and enterprises.",
+        image: "/prottoyon.png",
+        alt: "Prottoy App",
+        link: "https://www.behance.net/gallery/226418669/Prottoyon-App-Redesigning-Case-Study"
+    },
+
+    {
         title: "Amar Adalot",
         description: "A Bangladeshi legal platform offering instant legal advice.",
         image: "/amar_adalot.png",
         alt: "Amar Adalot App",
         link: "https://www.behance.net/gallery/226780723/Amar-Adalat-My-Court-App-Redesign-and-Case-Study"
+    },
+    {
+        title: "Grocery",
+        description: "Grocery Shopping & Delivery App",
+        image: "/grocery.png",
+        alt: "Grocery App",
+        link: "https://www.behance.net/gallery/233433769/Grocery-Mobile-App"
     },
 ];
 
@@ -71,24 +72,24 @@ const glassCard = `col-span-12 lg:w-[45%] lg:absolute p-6 md:p-8 rounded-2xl spa
 
 export default function AllPortfolio() {
     return (
-        <div className="max-w-7xl mx-auto px-6 mt-16 mb-28 space-y-24">
+        <div className="max-w-7xl mx-auto px-6 mt-10 lg:mt-16 mb-20 lg:mb-28 space-y-16 lg:space-y-24">
             {/* Header - Consistent with Home/Portfolio.tsx */}
-            <FadeIn delay={0.1} className="space-y-12">
-                <div className="flex justify-center items-center border-b border-white/10 pb-8">
-                    <h2 className="text-4xl md:text-5xl font-semibold text-white tracking-tighter uppercase text-center">
+            <FadeIn delay={0.1} className="space-y-10 lg:space-y-12">
+                <div className="flex justify-center items-center border-b border-white/10 pb-6 lg:pb-8">
+                    <h2 className="text-3xl md:text-5xl font-semibold text-white tracking-tighter uppercase text-center leading-tight">
                         All Projects
                     </h2>
                 </div>
             </FadeIn>
 
             {projects.map((project, index) => {
-                const isOdd = index % 2 === 0; // 0, 2 -> image left, card right; 1 -> card left, image right
+                const isOdd = index % 2 === 0;
 
                 return (
-                    <div key={project.title} className="relative pt-10 ">
+                    <div key={project.title} className="relative pt-6 lg:pt-10">
                         <div className="grid grid-cols-12 items-center">
 
-                            {/* Image Container - Using fill for consistency */}
+                            {/* Image Container */}
                             <FadeIn
                                 delay={0.2}
                                 direction={isOdd ? "right" : "left"}
@@ -112,20 +113,20 @@ export default function AllPortfolio() {
                             <FadeIn
                                 delay={0.4}
                                 direction="up"
-                                className={`${glassCard}
+                                className={`${glassCard} mt-[-60px] lg:mt-0 mx-4 lg:mx-0
                                     ${isOdd
-                                        ? "mt-[-80px] lg:mt-0 lg:right-0"
-                                        : "mb-[-80px] lg:mb-0 lg:left-0 order-2 lg:order-1"
+                                        ? "lg:right-0"
+                                        : "lg:left-0 lg:mb-0 order-2 lg:order-1"
                                     }`}
                             >
-                                <div className="inline-block border border-[#FF6B00] text-[#FF6B00] px-5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest">
+                                <div className="inline-block border border-[#FF6B00] text-[#FF6B00] px-4 lg:px-5 py-1 lg:py-1.5 rounded-full text-[10px] lg:text-xs font-semibold uppercase tracking-widest">
                                     Case Study
                                 </div>
                                 <div className="space-y-2">
-                                    <h3 className="text-3xl md:text-4xl font-semibold text-white tracking-tight uppercase leading-none">
+                                    <h3 className="text-2xl lg:text-4xl font-semibold text-white tracking-tight uppercase leading-none">
                                         {project.title}
                                     </h3>
-                                    <p className="text-white/60 text-base font-medium leading-relaxed max-w-md">
+                                    <p className="text-sm lg:text-base text-white/60 font-medium leading-relaxed max-w-md">
                                         {project.description}
                                     </p>
                                 </div>

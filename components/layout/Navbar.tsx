@@ -57,10 +57,10 @@ const Navbar = () => {
   }, [isMobileMenuOpen]);
 
   const navLinks = [
-    { name: "My Story", href: "#my-story" },
-    { name: "Education", href: "#experience" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Contact", href: "#contact" },
+    { name: "My Story", href: "/#my-story" },
+    { name: "Education", href: "/#experience" },
+    { name: "Portfolio", href: "/#portfolio" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   return (
@@ -95,7 +95,7 @@ const Navbar = () => {
           {/* Right Section (CTA + Mobile Toggle) */}
           <div className="flex items-center gap-3">
             <Link
-              href="#contact"
+              href="/#contact"
               className="hidden sm:block bg-[#FF6B00] text-white px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-[#FF8533] hover:shadow-[0_0_20px_rgba(255,107,0,0.4)] transition-all duration-300 active:scale-95"
             >
               Let's Talk
@@ -131,7 +131,7 @@ const Navbar = () => {
             ))}
 
             <Link
-              href="#contact"
+              href="/#contact"
               onClick={() => setIsMobileMenuOpen(false)}
               className="mt-4 bg-[#FF6B00] text-white px-8 py-3.5 rounded-full text-sm font-semibold uppercase tracking-widest shadow-[0_0_20px_rgba(255,107,0,0.4)] active:scale-95 transition-all"
             >

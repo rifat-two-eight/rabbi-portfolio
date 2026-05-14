@@ -3,29 +3,29 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 export default function Hero() {
     return (
-        <div className="pt-24 pb-20 px-6 max-w-7xl mx-auto">
+        <div className="pt-10 lg:pt-24 pb-8 lg:pb-20 px-6 max-w-7xl mx-auto">
 
             {/* Hero Section */}
-            <div className="flex flex-col lg:flex-row items-center gap-16 pt-10 pb-20">
+            <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 pt-6 lg:pt-10 pb-12 lg:pb-20">
 
                 {/* Left Content */}
-                <div className="flex-1 space-y-8">
+                <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 lg:space-y-8">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#FF6B00] text-sm font-medium animate-fade-in-up delay-100">
                         <div className="w-2 h-2 rounded-full bg-[#FF6B00] animate-pulse" />
                         Available for Projects
                     </div>
 
-                    <h1 className="text-6xl font-semibold leading-[1.1] tracking-tight text-white animate-fade-in-up delay-200">
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight text-white animate-fade-in-up delay-200">
                         Designing <br />
                         <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-[#FF6B00]">Experiences</span> <br />
                         That Matter.
                     </h1>
 
-                    <p className="text-sm text-white max-w-md leading-relaxed animate-fade-in-up delay-300">
+                    <p className="text-base sm:text-lg text-white/80 max-w-md leading-relaxed animate-fade-in-up delay-300">
                         I&apos;m Shahriar, a Jr. UX/UI Designer dedicated to creating premium, functional, and casually stunning digital products.
                     </p>
 
-                    <div className="flex flex-wrap gap-4 pt-2 animate-fade-in-up delay-400">
+                    <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-2 animate-fade-in-up delay-400">
                         <a
                             href="#portfolio"
                             className="flex items-center gap-2 bg-[#FF6B00] text-white px-7 py-3.5 rounded-full font-semibold text-sm hover:brightness-110 transition-all"
