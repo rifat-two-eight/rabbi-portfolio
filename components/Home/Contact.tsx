@@ -1,9 +1,48 @@
 "use client";
 
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
 import { FadeIn } from "../ui/FadeIn";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Contact() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        const formData = new FormData(e.currentTarget);
+
+        // Add the destination email directly if not using a key yet, 
+        // but Web3Forms typically requires an access_key.
+        // I'll add a note for the user to get their key.
+        formData.append("access_key", "e921e969-253d-4b1c-87c5-63e583799134");
+        formData.append("subject", `New Message from ${formData.get("name")}`);
+        formData.append("from_name", "Portfolio Contact Form");
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                toast.success("Message sent successfully! I will get back to you soon.");
+                (e.target as HTMLFormElement).reset();
+            } else {
+                toast.error("Error: Please set your Web3Forms Access Key in the code.");
+                console.error("Web3Forms Error:", data);
+            }
+        } catch (error) {
+            toast.error("Failed to send message. Please check your connection.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <section id="contact" className="scroll-mt-32 px-6 max-w-7xl mx-auto pb-32 overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -26,8 +65,8 @@ export default function Contact() {
                     <div className="space-y-6">
                         {/* Contact Items */}
                         {[
-                            { icon: Mail, label: "Email", value: "hello@rabbi.design" },
-                            { icon: Phone, label: "Phone", value: "+880 1700 000000" },
+                            { icon: Mail, label: "Email", value: "uxui.shahriar@gmail.com" },
+                            { icon: Phone, label: "Phone", value: "+880 1303120432" },
                             { icon: MapPin, label: "Location", value: "Dhaka, Bangladesh" }
                         ].map((item, idx) => (
                             <div key={idx} className="flex items-center gap-6 group">
@@ -48,37 +87,40 @@ export default function Contact() {
                             {[
                                 {
                                     name: "LinkedIn",
-                                    url: "#",
+                                    url: "https://www.linkedin.com/in/shahriar-alom-bhuiyan-036079225/",
                                     svg: <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2z" />
                                 },
                                 {
-                                    name: "Twitter",
-                                    url: "#",
-                                    svg: <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-                                },
-                                {
-                                    name: "GitHub",
-                                    url: "#",
-                                    svg: <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                                    name: "Behance",
+                                    url: "https://www.behance.net/rabbikhan66",
+                                    label: "Be"
                                 }
                             ].map((social, idx) => (
                                 <a
                                     key={idx}
                                     href={social.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center hover:bg-[#FF6B00] hover:border-[#FF6B00] transition-all group"
                                     aria-label={social.name}
                                 >
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        className="w-5 h-5 text-white group-hover:scale-110 transition-transform"
-                                    >
-                                        {social.svg}
-                                    </svg>
+                                    {social.svg ? (
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            className="w-5 h-5 text-white group-hover:scale-110 transition-transform"
+                                        >
+                                            {social.svg}
+                                        </svg>
+                                    ) : (
+                                        <span className="text-white font-bold text-sm group-hover:scale-110 transition-transform tracking-tight">
+                                            {social.label}
+                                        </span>
+                                    )}
                                 </a>
                             ))}
                         </div>
@@ -91,11 +133,13 @@ export default function Contact() {
                         {/* Subtle Background Glow */}
                         <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF6B00]/10 blur-[100px] -z-10" />
 
-                        <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                        <form className="space-y-6" onSubmit={handleSubmit}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label className="text-white/40 text-xs font-semibold uppercase tracking-widest ml-1">Your Name</label>
                                     <input
+                                        required
+                                        name="name"
                                         type="text"
                                         placeholder="John Doe"
                                         className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-white/20 focus:outline-none focus:border-[#FF6B00]/50 transition-colors"
@@ -104,6 +148,8 @@ export default function Contact() {
                                 <div className="space-y-2">
                                     <label className="text-white/40 text-xs font-semibold uppercase tracking-widest ml-1">Email Address</label>
                                     <input
+                                        required
+                                        name="email"
                                         type="email"
                                         placeholder="john@example.com"
                                         className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-white/20 focus:outline-none focus:border-[#FF6B00]/50 transition-colors"
@@ -114,6 +160,8 @@ export default function Contact() {
                             <div className="space-y-2">
                                 <label className="text-white/40 text-xs font-semibold uppercase tracking-widest ml-1">Subject</label>
                                 <input
+                                    required
+                                    name="subject_display"
                                     type="text"
                                     placeholder="How can I help you?"
                                     className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-white/20 focus:outline-none focus:border-[#FF6B00]/50 transition-colors"
@@ -123,15 +171,30 @@ export default function Contact() {
                             <div className="space-y-2">
                                 <label className="text-white/40 text-xs font-semibold uppercase tracking-widest ml-1">Message</label>
                                 <textarea
+                                    required
+                                    name="message"
                                     rows={5}
                                     placeholder="Write your message here..."
                                     className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-white/20 focus:outline-none focus:border-[#FF6B00]/50 transition-colors resize-none"
                                 />
                             </div>
 
-                            <button className="w-full bg-[#FF6B00] hover:bg-[#FF6B00]/90 text-white font-semibold uppercase tracking-widest py-4 rounded-xl flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-[0_10px_30px_rgba(255,107,0,0.2)]">
-                                Send Message
-                                <Send className="w-5 h-5" />
+                            <button
+                                disabled={isSubmitting}
+                                type="submit"
+                                className="w-full bg-[#FF6B00] hover:bg-[#FF6B00]/90 text-white font-semibold uppercase tracking-widest py-4 rounded-xl flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-[0_10px_30px_rgba(255,107,0,0.2)] disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {isSubmitting ? (
+                                    <>
+                                        Sending...
+                                        <Loader2 className="w-5 h-5 animate-spin" />
+                                    </>
+                                ) : (
+                                    <>
+                                        Send Message
+                                        <Send className="w-5 h-5" />
+                                    </>
+                                )}
                             </button>
                         </form>
                     </div>

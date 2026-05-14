@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 export default function Hero() {
     return (
@@ -35,10 +35,13 @@ export default function Hero() {
                         </a>
 
                         <a
-                            href="#contact"
-                            className="px-7 py-3.5 rounded-full border border-white/20 text-white font-semibold text-sm hover:bg-white/5 transition-colors"
+                            href="/shahriar.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            download
+                            className="px-7 py-3.5 rounded-full border border-[#FF6B00] text-white font-semibold text-sm hover:bg-white/5 transition-colors"
                         >
-                            Hire Me
+                            Download CV
                         </a>
                     </div>
                 </div>
@@ -52,7 +55,7 @@ export default function Hero() {
                         <div className="relative w-72 md:w-96 aspect-square rounded-2xl overflow-hidden p-3">
                             {/* Animated Spinning Red Border */}
                             <div className="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_70%,red_100%)] animate-[spin_3s_linear_infinite]" />
-                            
+
                             {/* Inner Dark Background to mask the center of the gradient */}
                             <div className="absolute inset-1 bg-[#0A0A0A] rounded-xl z-10" />
 

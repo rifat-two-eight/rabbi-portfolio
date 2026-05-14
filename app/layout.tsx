@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   description: "Professional portfolio of Rabbi, showcasing projects and skills.",
 };
 
+import { Toaster } from "react-hot-toast";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} scroll-smooth`}>
       <body className="font-sans min-h-screen flex flex-col text-white">
+        <Toaster position="bottom-right" toastOptions={{ duration: 3000 }} />
         <Navbar />
         <main className="flex-grow pt-16">
           {children}

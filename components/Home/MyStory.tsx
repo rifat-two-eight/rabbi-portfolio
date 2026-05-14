@@ -24,15 +24,17 @@ export default function MyStory() {
                             <span className="bg-[#e2f8f0] text-[#059669] px-4 py-1.5 rounded-full text-xs font-semibold">Cool Guy</span>
                         </div>
                     </div>
-                    <button className="w-full bg-[#111827] text-white py-4 rounded-2xl font-semibold text-sm hover:bg-black transition-all mt-8">
-                        Get In Touch
-                    </button>
+                    <a href="#contact" className="block mt-8">
+                        <button className="w-full bg-[#111827] text-white py-4 rounded-2xl font-semibold text-sm hover:bg-black transition-all">
+                            Get In Touch
+                        </button>
+                    </a>
                 </FadeIn>
 
                 {/* Social Media Agency Card */}
-                <FadeIn delay={0.3} direction="up" className="bg-[#e1a221] rounded-2xl p-10 flex flex-col justify-between text-white relative overflow-hidden min-h-[400px] border border-white/30">
+                <FadeIn delay={0.3} direction="up" className="bg-[#22375E] rounded-2xl p-10 flex flex-col justify-between text-white relative overflow-hidden min-h-[400px] border border-white/30">
                     <div className="space-y-8">
-                        <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-[#e1a221] shadow-lg">
+                        <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-[#FF6B00] shadow-lg">
                             <Heart className="w-7 h-7 fill-current" />
                         </div>
                         <div>
